@@ -1,0 +1,29 @@
+*vimhelplint.txt*	Sets up vim-lsp for julia
+
+Author     : machakann <mckn{at}outlook.jp>
+License    : Creative Commons 0 (CC0)
+Requirement: Vim 8.0 or higher
+             async.vim (https://github.com/prabirshrestha/async.vim)
+             vim-lsp (https://github.com/prabirshrestha/vim-lsp)
+==============================================================================
+INSTALL					*lsp-julia-install*
+
+1. Install the vim plugins. See the |vim-lsp| documents also.
+  - async.vim (https://github.com/prabirshrestha/async.vim)
+  - vim-lsp (https://github.com/prabirshrestha/vim-lsp)
+  - vim-lsp-julia (https://github.com/machakann/vim-lsp-julia)
+
+					*g:lsp_julia_path*
+2. Install julia and include the executable in `$PATH` or set the full path
+   into |g:lsp_julia_path|.
+  - The Julia Programming Language (https://julialang.org/)
+
+3. Add LanguageServer.jl package.
+  - LanguageServer.jl (https://github.com/julia-vscode/LanguageServer.jl)
+
+==============================================================================
+KNOWN ISSUE				*lsp-julia-known-issue*
+
+ - The first one or two launch might fail or take so long time.
+==============================================================================
+vim:tw=78:ts=8:ft=help:norl:noet:
