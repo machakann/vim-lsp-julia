@@ -25,6 +25,15 @@ git-submodules. Probably your plugin manager handles this automatically.
 However, if you manually installed this plugin or failed to run the language
 server, open vim and run `:call lsp_julia#update()<CR>`.
 
+------------------------------------------------------------------------------
+					*g:lsp_julia_depot_path*
+This plugin doesn't use global environment. The LanguageServer.jl and its
+dependencies are already included and these compiled caches are stored in
+`depot/lsp-julia/julia_pkgdir`. If you want to change the place to put those
+compiled caches and logs, set the desired path to |g:lsp_julia_depot_path|.
+>
+	let g:lsp_julia_depot_path = '~/.lspcache'
+<
 ==============================================================================
 KNOWN ISSUE				*lsp-julia-known-issue*
 

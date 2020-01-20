@@ -96,6 +96,10 @@ function! s:depotpath() abort
 endfunction
 
 
+" The place to put compiled cache and logs
+let g:lsp_julia_depot_path = get(g:, 'lsp_julia_depot_path', s:JULIA_PKGDIR)
+
+
 " Return the command and arguments to start the language server
 function! lsp_julia#start_cmd() abort
     let l:cmd = []
@@ -104,6 +108,7 @@ function! lsp_julia#start_cmd() abort
     call add(l:cmd, '--history-file=no')
     call add(l:cmd, '--project=' . s:PACKAGESPATH)
     call add(l:cmd, s:STARTSCRIPT)
+    call add(l:cmd, g:lsp_julia_depot_path)
     call add(l:cmd, s:envpath())
     call add(l:cmd, s:depotpath())
     return l:cmd
