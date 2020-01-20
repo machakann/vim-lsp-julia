@@ -45,24 +45,36 @@ endfunction
 " The depth to traverse path to search for 'project.toml'
 let s:TRAVERSAL_DEPTH = 10
 
-function! s:projectroot(file) abort
-    let l:shellslash = &shellslash
-    try
-        let l:path = fnamemodify(a:file, ':p:h')
-        for _ in range(1, s:TRAVERSAL_DEPTH)
-            if s:is_projectroot(l:path)
-                return l:path
-            endif
+if has('win32')
+    function! s:projectroot(file) abort
+        let l:shellslash = &shellslash
+        set noshellslash
+        try
+            let l:projectroot = s:_projectroot(a:file)
+        finally
+            let &shellslash = l:shellslash
+        endtry
+        return l:projectroot
+    endfunction
+else
+    function! s:projectroot(file) abort
+        return s:_projectroot(a:file)
+    endfunction
+endif
 
-            let l:prevpath = l:path
-            let l:path = fnamemodify(l:path, ':h')
-            if l:prevpath ==# l:path
-                break
-            endif
-        endfor
-    finally
-        let &shellslash = l:shellslash
-    endtry
+function! s:_projectroot(file) abort
+    let l:path = fnamemodify(a:file, ':p:h')
+    for _ in range(1, s:TRAVERSAL_DEPTH)
+        if s:is_projectroot(l:path)
+            return l:path
+        endif
+
+        let l:prevpath = l:path
+        let l:path = fnamemodify(l:path, ':h')
+        if l:prevpath ==# l:path
+            break
+        endif
+    endfor
     return ''
 endfunction
 
