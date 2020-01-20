@@ -8,18 +8,22 @@ Requirement: Vim 8.0 or higher
 ==============================================================================
 INSTALL					*lsp-julia-install*
 
-1. Install the vim plugins. See the |vim-lsp| documents also.
+					*g:lsp_julia_path*
+1. Install julia and include the executable in `$PATH` or set the full path
+   to |g:lsp_julia_path|.
+  - The Julia Programming Language (https://julialang.org/)
+
+2. Install the vim plugins. Read the |vim-lsp| documents for more details.
   - async.vim (https://github.com/prabirshrestha/async.vim)
   - vim-lsp (https://github.com/prabirshrestha/vim-lsp)
   - vim-lsp-julia (https://github.com/machakann/vim-lsp-julia)
 
-					*g:lsp_julia_path*
-2. Install julia and include the executable in `$PATH` or set the full path
-   into |g:lsp_julia_path|.
-  - The Julia Programming Language (https://julialang.org/)
+------------------------------------------------------------------------------
 
-3. Add LanguageServer.jl package.
-  - LanguageServer.jl (https://github.com/julia-vscode/LanguageServer.jl)
+Vim-lsp-julia includes LanguageServer.jl and its dependencies as
+git-submodules. Probably your plugin manager handles this automatically.
+However, if you manually installed this plugin or failed to run the language
+server, open vim and run `:call lsp_julia#update()<CR>`.
 
 ==============================================================================
 KNOWN ISSUE				*lsp-julia-known-issue*
