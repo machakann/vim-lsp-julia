@@ -31,7 +31,7 @@ deps = ["Markdown"]
 uuid = "b77e0a4c-d291-57a0-90e8-8db25a27a240"
 
 [[JSON]]
-deps = ["Dates", "Distributed", "Mmap", "Sockets", "Test", "Unicode"]
+deps = ["Dates", "Mmap", "Parsers", "Unicode"]
 path = "JSON"
 uuid = "682c06a0-de6a-54ab-a142-c8b1cf79cde6"
 
@@ -59,6 +59,11 @@ uuid = "d6f4376e-aef5-505a-96c1-9c027394607a"
 
 [[Mmap]]
 uuid = "a63ad114-7e13-5084-954f-fe012c677804"
+
+[[Parsers]]
+deps = ["Dates", "Test"]
+path = "Parsers"
+uuid = "69de0a69-1ddd-5017-9359-2bf0b02dc9f0"
 
 [[Pkg]]
 deps = ["Dates", "LibGit2", "Libdl", "Logging", "Markdown", "Printf", "REPL", "Random", "SHA", "UUIDs"]
