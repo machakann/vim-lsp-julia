@@ -3,21 +3,19 @@ vim-lsp-julia
 
 [![CC0](http://i.creativecommons.org/p/zero/1.0/88x31.png "CC0")](http://creativecommons.org/publicdomain/zero/1.0/deed.en)
 
-Sets up vim-lsp for julia
+[The Julia programming language](https://julialang.org/) support for [vim-lsp](https://github.com/prabirshrestha/vim-lsp) using [LanguageServer.jl](https://github.com/julia-vscode/LanguageServer.jl).
 
-## Install
+## Installation
 
-1. Install the vim plugins ([async.vim](https://github.com/prabirshrestha/async.vim), [vim-lsp](https://github.com/prabirshrestha/vim-lsp), and [vim-lsp-julia](https://github.com/machakann/vim-lsp-julia)). See [the vim-lsp documents](https://github.com/prabirshrestha/vim-lsp) also.
+1. Install [julia](https://julialang.org/) and include the executable in `$PATH`, or set the path to `g:lsp_julia_path` in your vimrc.
 
-1. Install [julia](https://julialang.org/) and include the executable in `$PATH`.
+1. Install the vim plugins ([async.vim](https://github.com/prabirshrestha/async.vim), [vim-lsp](https://github.com/prabirshrestha/vim-lsp), and [vim-lsp-julia](https://github.com/machakann/vim-lsp-julia)). Read [the vim-lsp documents](https://github.com/prabirshrestha/vim-lsp) for more details.
 
-1. Add [LanguageServer.jl](https://github.com/julia-vscode/LanguageServer.jl) package.
 
-```
-julia -e "import Pkg;Pkg.add(\"LanguageServer\")"
-```
+### Note on installation
 
+`Vim-lsp-julia` includes `LanguageServer.jl` and its dependencies as git-submodules. Probably your plugin manager handles this automatically. However, if you manually installed this plugin or failed to run the language server, open vim and run `:call lsp_julia#update()<CR>`.
 
 ## Known issue
 
- - The first one or two launch might fail or take so long time.
+ - The first one or two launch(es) might fail or take so long time. [Ref.](https://github.com/julia-vscode/SymbolServer.jl/issues/56)
