@@ -3,7 +3,7 @@
 " License    : Creative Commons 0 (CC0)
 
 if exists("g:loaded_lsp_julia")
-  finish
+    finish
 endif
 let g:loaded_lsp_julia = 1
 
@@ -12,14 +12,14 @@ set cpoptions&vim
 
 
 if executable('julia')
-  autocmd User lsp_setup call lsp#register_server({
-   \ 'name': 'julia',
-   \ 'cmd': {server_info->lsp_julia#start_cmd()},
-   \ 'whitelist': ['julia'],
-   \ })
+    autocmd User lsp_setup call lsp#register_server({
+     \ 'name': 'julia',
+     \ 'cmd': {server_info->lsp_julia#start_cmd()},
+     \ 'whitelist': ['julia'],
+     \ })
 endif
 
 
 let &cpoptions = s:cpo_save
 unlet s:cpo_save
-" vim: sw=2 ts=2 sts=2 et
+" vim: sw=4 sts=4 et
