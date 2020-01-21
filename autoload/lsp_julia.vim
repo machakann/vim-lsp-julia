@@ -68,9 +68,7 @@ function! s:_projectroot(file) abort
         if s:is_projectroot(l:path)
             return l:path
         endif
-
-        let l:prevpath = l:path
-        let l:path = fnamemodify(l:path, ':h')
+        let [l:prevpath, l:path] = [l:path, fnamemodify(l:path, ':h')]
         if l:prevpath ==# l:path
             break
         endif
