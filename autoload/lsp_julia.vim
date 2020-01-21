@@ -81,9 +81,8 @@ endfunction
 
 " Return the project root path of the current buffer
 " NOTE: Return empty string if the current buffer does not belong to any project
-function! s:envpath() abort
-    let l:filename = bufname()
-    let l:projectroot = s:projectroot(l:filename)
+function! s:envpath(filename) abort
+    let l:projectroot = s:projectroot(a:filename)
     return '"' . l:projectroot . '"'
 endfunction
 
@@ -93,7 +92,8 @@ let g:lsp_julia_depot_path = get(g:, 'lsp_julia_depot_path', s:JULIA_PKGDIR)
 
 
 " Return the command and arguments to start the language server
-function! lsp_julia#start_cmd() abort
+function! lsp_julia#start_cmd(...) abort
+    let l:filename = get(a:000, 0, bufname())
     let l:cmd = []
     call add(l:cmd, g:lsp_julia_path)
     call add(l:cmd, '--startup-file=no')
@@ -101,7 +101,7 @@ function! lsp_julia#start_cmd() abort
     call add(l:cmd, '--project=' . s:PACKAGESPATH)
     call add(l:cmd, s:STARTSCRIPT)
     call add(l:cmd, g:lsp_julia_depot_path)
-    call add(l:cmd, s:envpath())
+    call add(l:cmd, s:envpath(l:filename))
     return l:cmd
 endfunction
 
