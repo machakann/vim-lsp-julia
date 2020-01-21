@@ -8,7 +8,6 @@ using LanguageServer
 using SymbolServer
 
 envpath = unquote(Base.ARGS[2])
-olddepotpath = unquote(Base.ARGS[3])
 
-server = LanguageServerInstance(stdin, stdout, false, envpath, olddepotpath)
+server = LanguageServerInstance(stdin, stdout, false, envpath)
 run(server)

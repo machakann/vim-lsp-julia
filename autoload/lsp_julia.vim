@@ -88,14 +88,6 @@ function! s:envpath() abort
 endfunction
 
 
-" Return $JULIA_DEPOT_PATH
-" NOTE: Return empty string if $JULIA_DEPOT_PATH does not exist
-function! s:depotpath() abort
-    let l:depotpath = exists('$JULIA_DEPOT_PATH') ? $JULIA_DEPOT_PATH : ''
-    return '"' . l:depotpath . '"'
-endfunction
-
-
 " The place to put compiled cache and logs
 let g:lsp_julia_depot_path = get(g:, 'lsp_julia_depot_path', s:JULIA_PKGDIR)
 
@@ -110,7 +102,6 @@ function! lsp_julia#start_cmd() abort
     call add(l:cmd, s:STARTSCRIPT)
     call add(l:cmd, g:lsp_julia_depot_path)
     call add(l:cmd, s:envpath())
-    call add(l:cmd, s:depotpath())
     return l:cmd
 endfunction
 
