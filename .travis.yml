@@ -1,0 +1,34 @@
+language: julia
+julia:
+  - 1.0
+  - 1.1
+  - 1.2
+  - 1.3
+
+env:
+  - VIM_VERSION=v8.2.0
+
+addons:
+  apt:
+    packages:
+      - vim
+
+install:
+  - git clone --depth 1 --branch "${VIM_VERSION}" https://github.com/vim/vim /tmp/vim
+  - cd /tmp/vim
+  - ./configure --prefix="${HOME}/vim" --with-features=huge --enable-fail-if-missing
+  - make -j2
+  - make install
+  - cd $TRAVIS_BUILD_DIR
+  - export PATH=$HOME/vim/bin:$PATH
+  - mkdir -p ./dependencies
+  - git clone https://github.com/thinca/vim-themis
+  - git clone https://github.com/prabirshrestha/async.vim     ./dependencies/async.vim
+  - git clone https://github.com/prabirshrestha/vim-lsp       ./dependencies/vim-lsp
+  - git clone https://github.com/JuliaEditorSupport/julia-vim ./dependencies/julia-vim
+
+before_script:
+  - vim --version
+
+script:
+  - ./vim-themis/bin/themis

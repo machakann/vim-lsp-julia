@@ -1,0 +1,70 @@
+Describe [feature]
+    Before
+        set virtualedit=onemore
+        execute 'edit ' . g:source_path
+        WaitForServerGettingReady
+    End
+
+    Context documentDiagnostics
+        It shows errors&warnings
+            call setloclist(0, [])
+            LspDocumentDiagnostics
+            Assert NotEmpty(getloclist(0))
+            lclose
+        End
+    End
+
+    Context documentSymbol
+        It lists symbols
+            call setqflist([])
+            LspDocumentDiagnostics
+            Assert NotEmpty(getqflist())
+            cclose
+        End
+    End
+
+    Context references
+        It shows occurences of the symbol under the cursor
+            call setqflist([])
+            LspReferences
+            Assert NotEmpty(getqflist())
+            cclose
+        End
+    End
+
+    Context definition
+        It moves the cursor to the definition of the function under the cursor
+            call cursor(6, 1)
+            LspDefinition
+            Assert Equals(line('.'), 5)
+        End
+    End
+
+    Context completion
+        It suggests completion items
+            setlocal omnifunc=lsp#complete
+            call cursor(8, 3)
+            let before = getline(line('.'))
+            execute 'normal! A\<C-x>\<C-o>\<C-y>'
+            let after = getline(line('.'))
+            Assert NotEquals(before, after)
+        End
+    End
+
+    Context rename
+        It renames the symbol under the cursor
+            call cursor(5, 1)
+            execute "normal! :LspRename\<CR>\<C-u>test3\<CR>"
+            Assert Equals(getline(6), 'test3()')
+        End
+    End
+
+    Context documentFormatting
+        It formats the whole buffer
+            LspDocumentFormat
+            Assert Equals(getline(5), 'test1() = cos(0)')
+        End
+    End
+End
+
+" vim:set sts=4 sw=4 et:

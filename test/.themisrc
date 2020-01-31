@@ -1,0 +1,61 @@
+filetype plugin on
+set encoding=utf-8
+let g:assert = themis#helper('assert')
+call themis#helper('command').with(g:assert)
+
+let s:SEPARATOR = has('win32') && !&shellslash ? '\' : '/'
+function! s:joinpath(...) abort
+    return join(a:000, s:SEPARATOR)
+endfunction
+
+
+execute 'set runtimepath^=' . expand('<sfile>:p:h:h')
+execute 'set runtimepath^=' . s:joinpath(expand('<sfile>:p:h:h'), 'dependencies', 'julia-vim')
+execute 'source ' . s:joinpath(expand('<sfile>:p:h:h'), 'dependencies', 'julia-vim', 'ftdetect', 'julia.vim')
+execute 'set runtimepath^=' . s:joinpath(expand('<sfile>:p:h:h'), 'dependencies', 'async.vim')
+execute 'set runtimepath^=' . s:joinpath(expand('<sfile>:p:h:h'), 'dependencies', 'vim-lsp')
+execute 'runtime! ' . s:joinpath('plugin', '*.vim')
+call lsp#enable()
+
+let g:project_dir = s:joinpath(expand('<sfile>:p:h'), 'TestProject')
+let g:source_path = s:joinpath(g:project_dir, 'src', 'TestProject.jl')
+let g:lsp_log_file = s:joinpath(expand('<sfile>:p:h:h'), 'lsp.log')
+
+
+function! s:test_failed() abort
+    enew
+    call append(0, [
+    \ '*Server status*',
+    \ '  ' . lsp#get_server_status('julia'),
+    \ '',
+    \ '*Log*',
+    \])
+    if filereadable(g:lsp_log_file)
+        execute '$read ' . g:lsp_log_file
+    endif
+    1,$print
+    cquit
+endfunction
+command! -nargs=0 TestFailed call s:test_failed()
+
+
+" Wait for the server getting ready five minutes at maximum
+function! s:wait_for_server() abort
+    if lsp#get_server_status('julia') is# 'running'
+        return
+    endif
+    for _ in range(300)
+        sleep 1
+        let l:status = lsp#get_server_status('julia')
+        if l:status isnot# "starting"
+            break
+        endif
+    endfor
+    if l:status isnot# 'running'
+        TestFailed
+    endif
+    sleep 300
+endfunction
+command! -nargs=0 WaitForServerGettingReady call s:wait_for_server()
+
+" vim:set sts=4 sw=4 et:
