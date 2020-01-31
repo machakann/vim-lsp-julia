@@ -89,6 +89,8 @@ endfunction
 let g:lsp_julia_depot_path = get(g:, 'lsp_julia_depot_path', s:JULIA_PKGDIR)
 
 
+let g:lsp_julia_use_global_packages = get(g:, 'lsp_julia_use_global_packages', s:FALSE)
+
 " Return the command and arguments to start the language server
 function! lsp_julia#start_cmd(...) abort
     let l:filename = get(a:000, 0, bufname())
@@ -96,7 +98,9 @@ function! lsp_julia#start_cmd(...) abort
     call add(l:cmd, g:lsp_julia_path)
     call add(l:cmd, '--startup-file=no')
     call add(l:cmd, '--history-file=no')
-    call add(l:cmd, '--project=' . s:PACKAGESPATH)
+    if !g:lsp_julia_use_global_packages
+        call add(l:cmd, '--project=' . s:PACKAGESPATH)
+    endif
     call add(l:cmd, s:STARTSCRIPT)
     call add(l:cmd, g:lsp_julia_depot_path)
     call add(l:cmd, s:envpath(l:filename))
