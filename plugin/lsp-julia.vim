@@ -19,6 +19,10 @@ if executable('julia')
         \ 'cmd': {server_info->lsp_julia#start_cmd()},
         \ 'whitelist': ['julia'],
         \ })
+
+        autocmd User lsp_setup if &filetype ==# 'julia' && !exists('b:asyncomplete_refresh_pattern')
+                            \|   let b:asyncomplete_refresh_pattern = '@\?\k\+$'
+                            \| endif
     augroup END
 endif
 
