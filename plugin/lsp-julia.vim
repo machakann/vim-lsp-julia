@@ -12,11 +12,14 @@ set cpoptions&vim
 
 
 if executable('julia')
-    autocmd User lsp_setup call lsp#register_server({
-     \ 'name': 'julia',
-     \ 'cmd': {server_info->lsp_julia#start_cmd()},
-     \ 'whitelist': ['julia'],
-     \ })
+    augroup lsp-julia-lsp_setup
+        autocmd!
+        autocmd User lsp_setup call lsp#register_server({
+        \ 'name': 'julia',
+        \ 'cmd': {server_info->lsp_julia#start_cmd()},
+        \ 'whitelist': ['julia'],
+        \ })
+    augroup END
 endif
 
 
