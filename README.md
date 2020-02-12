@@ -19,3 +19,5 @@ vim-lsp-julia
 ## Known issue
 
  - The first one or two launch(es) might fail or take so long time. [Ref.](https://github.com/julia-vscode/SymbolServer.jl/issues/56)
+ - The auto-completion of `@macro` using [asyncomplete-lsp](https://github.com/prabirshrestha/asyncomplete-lsp.vim) may duplicate the first `@`. Set `b:asyncomplete_refresh_pattern` appropriately. [Ref.](https://github.com/prabirshrestha/asyncomplete-lsp.vim/issues/20)
+ - Buffer texts may be messed up after a complete item insertion. It is able to circumvent this problem with setting `let g:lsp_text_edit_enabled = 0` though it stops some useful features.
