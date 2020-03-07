@@ -94,17 +94,12 @@ let g:lsp_julia_use_global_packages = get(g:, 'lsp_julia_use_global_packages', s
 " Return the command and arguments to start the language server
 function! lsp_julia#start_cmd(...) abort
     let l:filename = get(a:000, 0, bufname())
-    let l:depotpath = '""'
     let l:cmd = []
     call add(l:cmd, g:lsp_julia_path)
     call add(l:cmd, '--startup-file=no')
     call add(l:cmd, '--history-file=no')
-    if !g:lsp_julia_use_global_packages
-        call add(l:cmd, '--project=' . s:PACKAGESPATH)
-        let l:depotpath = g:lsp_julia_depot_path
-    endif
+    call add(l:cmd, '--project=' . s:PACKAGESPATH)
     call add(l:cmd, s:STARTSCRIPT)
-    call add(l:cmd, l:depotpath)
     call add(l:cmd, s:envpath(l:filename))
     return l:cmd
 endfunction

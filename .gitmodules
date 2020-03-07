@@ -7,9 +7,6 @@
 [submodule "depot/lsp-julia/packages/FilePathsBase"]
 	path = depot/lsp-julia/packages/FilePathsBase
 	url = https://github.com/rofinn/FilePathsBase.jl
-[submodule "depot/lsp-julia/packages/JSON"]
-	path = depot/lsp-julia/packages/JSON
-	url = https://github.com/JuliaIO/JSON.jl
 [submodule "depot/lsp-julia/packages/LanguageServer"]
 	path = depot/lsp-julia/packages/LanguageServer
 	url = https://github.com/julia-vscode/LanguageServer.jl
@@ -28,3 +25,9 @@
 [submodule "depot/lsp-julia/packages/Parsers"]
 	path = depot/lsp-julia/packages/Parsers
 	url = https://github.com/JuliaData/Parsers.jl.git
+[submodule "depot/lsp-julia/packages/JSON"]
+	path = depot/lsp-julia/packages/JSON
+	url = https://github.com/JuliaIO/JSON.jl
+[submodule "depot/lsp-julia/packages/JSONRPC"]
+	path = depot/lsp-julia/packages/JSONRPC
+	url = https://github.com/julia-vscode/JSONRPC.jl
