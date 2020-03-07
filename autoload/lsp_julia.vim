@@ -73,7 +73,7 @@ function! s:_projectroot(file) abort
             break
         endif
     endfor
-    return ''
+    return fnamemodify(a:file, ':p:h')
 endfunction
 
 
