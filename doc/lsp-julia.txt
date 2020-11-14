@@ -3,7 +3,6 @@
 Author     : machakann <mckn{at}outlook.jp>
 License    : Creative Commons 0 (CC0)
 Requirement: Vim 8.0 or higher
-             async.vim (https://github.com/prabirshrestha/async.vim)
              vim-lsp (https://github.com/prabirshrestha/vim-lsp)
 ==============================================================================
 INSTALL					*lsp-julia-install*
@@ -14,7 +13,6 @@ INSTALL					*lsp-julia-install*
   - The Julia Programming Language (https://julialang.org/)
 
 2. Install the vim plugins. Read the |vim-lsp| documents for more details.
-  - async.vim (https://github.com/prabirshrestha/async.vim)
   - vim-lsp (https://github.com/prabirshrestha/vim-lsp)
   - vim-lsp-julia (https://github.com/machakann/vim-lsp-julia)
 

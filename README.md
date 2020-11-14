@@ -9,7 +9,7 @@ vim-lsp-julia
 
 1. Install [julia](https://julialang.org/) and include the executable in `$PATH`, or set the path to `g:lsp_julia_path` in your vimrc.
 
-1. Install the vim plugins ([async.vim](https://github.com/prabirshrestha/async.vim), [vim-lsp](https://github.com/prabirshrestha/vim-lsp), and [vim-lsp-julia](https://github.com/machakann/vim-lsp-julia)). Read [the vim-lsp documents](https://github.com/prabirshrestha/vim-lsp) for more details.
+1. Install the vim plugins ([vim-lsp](https://github.com/prabirshrestha/vim-lsp), and [vim-lsp-julia](https://github.com/machakann/vim-lsp-julia)). Read [the vim-lsp documents](https://github.com/prabirshrestha/vim-lsp) for more details.
 
 
 ### Note on installation
