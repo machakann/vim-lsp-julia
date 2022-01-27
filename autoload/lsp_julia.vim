@@ -169,6 +169,13 @@ function! lsp_julia#update() abort
     else
         let l:result = s:update(g:lsp_julia_path, g:lsp_julia_base_path)
     endif
+    if v:shell_error
+        echohl ErrorMsg
+        echomsg 'vim-lsp-julia: Errored. Check '':echo g:lsp_julia_message_log'''
+        echohl NONE
+    else
+        echomsg 'vim-lsp-julia: Succeeded!'
+    endif
     call extend(g:lsp_julia_message_log, split(l:result, '\n'))
 endfunction
 
