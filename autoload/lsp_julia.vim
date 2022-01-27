@@ -162,7 +162,7 @@ function! s:update(julia_path, base_path) abort
 endfunction
 
 
-let g:lsp_julia_message_log = []
+let g:lsp_julia_log = []
 
 function! lsp_julia#update() abort
     let l:depot = s:depot_path(g:lsp_julia_base_path)
@@ -172,7 +172,7 @@ function! lsp_julia#update() abort
     else
         let l:result = s:update(g:lsp_julia_path, g:lsp_julia_base_path)
     endif
-    call extend(g:lsp_julia_message_log, split(l:result, '\n'))
+    call extend(g:lsp_julia_log, split(l:result, '\n'))
 endfunction
 
 " vim:set sts=4 sw=4 et:

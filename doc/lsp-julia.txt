@@ -19,8 +19,8 @@ INSTALL					*lsp-julia-install*
 3. Run vim and execute `:call lsp_julia#update()` .
 
 
-					*g:lsp_julia_message_log*
-Check `:echo g:lsp_julia_message_log` for the results.
+					*g:lsp_julia_log*
+Check `:echo g:lsp_julia_log` for the results.
 
 
 Update language server~
