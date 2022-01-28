@@ -16,19 +16,26 @@ INSTALL					*lsp-julia-install*
   - vim-lsp (https://github.com/prabirshrestha/vim-lsp)
   - vim-lsp-julia (https://github.com/machakann/vim-lsp-julia)
 
-------------------------------------------------------------------------------
+3. Run vim and execute `:call lsp_julia#update()` .
 
-Vim-lsp-julia includes LanguageServer.jl and its dependencies as
-git-submodules. Probably your plugin manager handles this automatically.
-However, if you manually installed this plugin or failed to run the language
-server, open vim and run `:call lsp_julia#update()<CR>`.
+
+					*g:lsp_julia_message_log*
+Check `:echo g:lsp_julia_message_log` for the results.
+
+
+Update language server~
+
+You can update the language server by the same command
+`:call lsp_julia#update()` . It updates LanguageServer.jl and its dependencies
+synchronously and return control to you when finished.
 
 ------------------------------------------------------------------------------
-					*g:lsp_julia_depot_path*
-This plugin doesn't use global environment. The LanguageServer.jl and its
-dependencies are already included and these compiled caches are stored in
-`depot/lsp-julia/julia_pkgdir`. If you want to change the place to put those
-compiled caches and logs, set the desired path to |g:lsp_julia_depot_path|.
+					*g:lsp_julia_base_path*
+This plugin doesn't install the required packages to the global environment.
+The LanguageServer.jl and its dependencies are placed into this plugin
+directory. Therefore, all those files will be removed if this plugin
+uninstalled.  If you want to change the place to put those source files,
+compiled caches and logs, set the desired path to |g:lsp_julia_base_path|.
 >
 	let g:lsp_julia_depot_path = '~/.lspcache'
 <

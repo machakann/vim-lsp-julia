@@ -11,10 +11,13 @@ vim-lsp-julia
 
 1. Install the vim plugins ([vim-lsp](https://github.com/prabirshrestha/vim-lsp), and [vim-lsp-julia](https://github.com/machakann/vim-lsp-julia)). Read [the vim-lsp documents](https://github.com/prabirshrestha/vim-lsp) for more details.
 
+1. Run vim and execute `:call lsp_julia#update()`.
 
-### Note on installation
 
-`Vim-lsp-julia` includes `LanguageServer.jl` and its dependencies as git-submodules. Probably your plugin manager handles this automatically. However, if you manually installed this plugin or failed to run the language server, open vim and run `:call lsp_julia#update()<CR>`.
+## Update language server
+
+Run vim and execute `:call lsp_julia#update()` just as same as installation. It updates LanguageServer.jl and its dependencies synchronously and return control to you when finished.
+
 
 ## Known issue
 
