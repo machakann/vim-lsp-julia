@@ -60,7 +60,7 @@ function! s:_projectroot(file) abort
             break
         endif
     endfor
-    return fnamemodify(a:file, ':p:h')
+    return ''
 endfunction
 
 if has('win32')

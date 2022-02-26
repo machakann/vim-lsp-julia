@@ -2,6 +2,20 @@ unquote(s) = length(s) >= 2 && (s[1] == '"' && s[end] == '"') ? s[2:end-1] : s
 projectpath = unquote(Base.ARGS[1])
 basepath = unquote(Base.ARGS[2])
 
+function get_envpath(projectpath)
+    !isempty(projectpath) && return projectpath
+    return dirname(something(
+               get(Base.load_path(), 1, nothing),
+               Base.load_path_expand("@v#.#")
+           ))
+end
+envpath = get_envpath(projectpath)
+open("/home/mckn/lspjulia.log", "w") do io
+    println(io, envpath)
+    println(io, get(Base.load_path(), 1, nothing))
+    println(io, Base.load_path_expand("@v#.#"))
+end
+
 depotpath = joinpath(basepath, "depot")
 pushfirst!(DEPOT_PATH, depotpath)
 using Pkg
@@ -9,4 +23,4 @@ lsppath = joinpath(depotpath, "environments", "lsp")
 Pkg.activate(lsppath)
 
 using LanguageServer
-runserver(stdin, stdout, projectpath)
+runserver(stdin, stdout, envpath)
