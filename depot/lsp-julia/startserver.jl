@@ -10,11 +10,6 @@ function get_envpath(projectpath)
            ))
 end
 envpath = get_envpath(projectpath)
-open("/home/mckn/lspjulia.log", "w") do io
-    println(io, envpath)
-    println(io, get(Base.load_path(), 1, nothing))
-    println(io, Base.load_path_expand("@v#.#"))
-end
 
 depotpath = joinpath(basepath, "depot")
 pushfirst!(DEPOT_PATH, depotpath)
