@@ -13,11 +13,11 @@ if has('win32') || has('win64')
         let g:lsp_julia_path = 'julia'
     else
         " search julia binary in the default installation paths
-        let l:pathlist = glob($LOCALAPPDATA . 'Programs\Julia-*\bin\julia.exe', 1, 1)
+        let s:pathlist = glob($LOCALAPPDATA . 'Programs\Julia-*\bin\julia.exe', 1, 1)
         if empty(l:pathlist)
-            let l:pathlist = glob($LOCALAPPDATA . 'Julia-*\bin\julia.exe', 1, 1)()
+            let s:pathlist = glob($LOCALAPPDATA . 'Julia-*\bin\julia.exe', 1, 1)()
         endif
-        let g:lsp_julia_path = get(sort(l:pathlist, 0), -1, 'julia')
+        let g:lsp_julia_path = get(sort(s:pathlist, 0), -1, 'julia')
     endif
 else
     let g:lsp_julia_path = get(g:, 'lsp_julia_path', 'julia')
