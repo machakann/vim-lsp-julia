@@ -11,23 +11,29 @@ let s:cpo_save = &cpoptions
 set cpoptions&vim
 
 
-if executable('julia')
-    augroup lsp-julia-lsp_setup
-        autocmd!
-        autocmd User lsp_setup call lsp#register_server({
-        \ 'name': 'julia',
-        \ 'cmd': {server_info->lsp_julia#start_cmd()},
-        \ 'whitelist': ['julia'],
-        \ 'config': {
-        \   'refresh_pattern': '@\?\k\+$',
-        \ },
+function! s:register() abort
+    if !executable('julia')
+        return
+    endif
+
+    call lsp#register_server({
+        \   'name': 'julia',
+        \   'cmd': {server_info->lsp_julia#start_cmd()},
+        \   'whitelist': ['julia'],
+        \   'config': {
+        \     'refresh_pattern': '@\?\k\+$',
+        \   },
         \})
 
-        autocmd User lsp_setup if &filetype ==# 'julia' && !exists('b:asyncomplete_refresh_pattern')
-                            \|   let b:asyncomplete_refresh_pattern = '@\?\k\+$'
-                            \| endif
-    augroup END
-endif
+    if &filetype ==# 'julia' && !exists('b:asyncomplete_refresh_pattern')
+        let b:asyncomplete_refresh_pattern = '@\?\k\+$'
+    endif
+endfunction
+
+augroup lsp-julia-lsp_setup
+    autocmd!
+    autocmd User lsp_setup call s:register()
+augroup END
 
 
 let &cpoptions = s:cpo_save
